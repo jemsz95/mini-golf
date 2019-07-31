@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://PuttPutt.gd" type="Script" id=1]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Club.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Club.gd" type="Script" id=5]
+[ext_resource path="res://Camera.gd" type="Script" id=6]
+
+[node name="PuttPutt" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Ball" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06487, 0.0948911, -0.160774 )
+
+[node name="Floor" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.96046e-08, 0 )
+mode = 3
+
+[node name="Club" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00185943, 1.81475, -0.000925653 )
+mode = 3
+script = ExtResource( 5 )
+camera_path = NodePath("../Camera")
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.0227949, 0.247404, -0.968644, -0.00663469, 0.968837, 0.247609, 0.999718, 0.0120709, -0.0204431, -2.59878, 1.27336, -0.477434 )
+script = ExtResource( 6 )
+target = NodePath("../Ball")
